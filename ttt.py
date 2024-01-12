@@ -1,4 +1,5 @@
 feld = [["---","---","---",],["---","---","---",],["---","---","---",]]
+rulefeld = [[" 1 "," 2 "," 3 "],[" 4 "," 5 "," 6 "],[" 7 "," 8 "," 9 "]]
 spieler = "X"
 done = 0
 
@@ -50,18 +51,29 @@ def reihe():
     else:
         spieler = "X"
 
+def rules():
+    for row in rulefeld:
+        print(*row, sep="  |\t")
+    print("Wähle ein Feld durch Eingabe der zugehörigen Zahl.\n" 
+    "Die Regeln von Tic Tac Toe sollten bekannt sein xD\n")
+
+def spielfeld():
+    for row in feld:
+        print(*row, sep="  |\t")
+
 def play():
     count = 0
+    rules()
     while True:
         if count == 9:
             print("DRAW")
             break
-        for row in feld:
-            print(*row, sep="  |\t")
+        spielfeld()
         pos()
         count += 1
         check()
         if done == 1:
+            spielfeld()
             print("Spieler " + spieler + " gewinnt.")
             break
         reihe()
