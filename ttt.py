@@ -1,26 +1,26 @@
 feld = [["---","---","---",],["---","---","---",],["---","---","---",]]
 spieler = "X"
+done = 0
 
 def check():
+    global done
     for i in range(3):
         if feld[i][0] == feld[i][1] == feld[i][2] == "-X-":
-            return "X"
+            done = 1
         elif feld[0][i] == feld[1][i] == feld[2][i] == "-X-":
-            return "X"
+            done = 1
         elif feld[0][0] == feld[1][1] == feld[2][2] == "-X-":
-            return "X"
+            done = 1
         elif feld[0][2] == feld[1][1] == feld[2][0] == "-X-":
-            return "X"
+            done = 1
         elif feld[i][0] == feld[i][1] == feld[i][2] == "-O-":
-            return "O"
+            done = 1
         elif feld[0][i] == feld[1][i] == feld[2][i] == "-O-":
-            return "O"
+            done = 1
         elif feld[0][0] == feld[1][1] == feld[2][2] == "-O-":
-            return "O"
+            done = 1
         elif feld[0][2] == feld[1][1] == feld[2][0] == "-O-":
-            return "O"
-        else:
-            return True
+            done = 1
 
 def pos():
     zahl = int(input("Spieler " + spieler + " ist an der Reihe\n"))
@@ -57,8 +57,9 @@ def play():
             print(*row, sep="  |\t")
         pos()
         count += 1
-        if check() != True:
-            print("Spieler " + check() + " gewinnt.")
+        check()
+        if done == 1:
+            print("Spieler " + spieler + " gewinnt.")
             break
         reihe()
 
