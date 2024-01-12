@@ -44,6 +44,7 @@ def pos():
     except:
         print("Bitte Zahl zwischen 1 und 9 eingeben.")
         pos()
+
 def reihe():
     global spieler
     if spieler == "X":
@@ -65,10 +66,10 @@ def play():
     count = 0
     rules()
     while True:
+        spielfeld()
         if count == 9:
             print("DRAW")
             break
-        spielfeld()
         pos()
         count += 1
         check()
